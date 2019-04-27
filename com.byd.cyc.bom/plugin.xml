@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="4.5"?>
+<plugin>
+
+	<extension
+         point="org.eclipse.ui.commands">
+		<command
+            name="载入BOM系统"
+            id="com.byd.cyc.bom.commands.openBOMCommand">
+		</command>
+		<command
+            name="根据ECO生成DCN设计变更通知单（乘用车用）"
+            id="com.byd.cyc.bom.commands.generateChangeNoticeCommand">
+		</command>
+	</extension>
+	
+	<extension
+         point="org.eclipse.ui.handlers">
+		<handler
+            commandId="com.byd.cyc.bom.commands.openBOMCommand"
+            class="com.byd.cyc.bom.handlers.OpenBOMHandler">
+		</handler>
+		<handler
+            commandId="com.byd.cyc.bom.commands.generateChangeNoticeCommand"
+            class="com.byd.cyc.bom.handlers.GenerateChangeNoticeHandler">
+		</handler>
+	</extension>
+	
+	<extension
+         point="org.eclipse.ui.bindings">
+		<key
+            commandId="com.byd.cyc.bom.commands.openBOMCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+		</key>
+	</extension>
+	
+	<extension
+         point="org.eclipse.ui.menus">
+		<menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+			<menu
+               label="乘用车BOM集成"
+               id="com.byd.cyc.bom.menus.bomMenu">
+				<command
+                  commandId="com.byd.cyc.bom.commands.openBOMCommand"
+                  mnemonic="S"
+                  id="com.byd.cyc.bom.menus.openBOMCommand">
+				</command>
+			</menu>
+		</menuContribution>
+
+		<menuContribution locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+			<command commandId="com.byd.cyc.bom.commands.generateChangeNoticeCommand" 
+			id="com.byd.cyc.bom.menus.generateChangeNoticeCommand">
+				<visibleWhen>
+					<and>
+						<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+						<iterate ifEmpty="false" operator="and">
+							<adapt type="com.teamcenter.rac.kernel.TCComponent">
+								<and>
+									<test
+                            			property="com.byd.cyc.bom.selectCNType" 
+                            			forcePluginActivation="true">
+									</test>
+								</and>
+							</adapt>
+						</iterate>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.byd.cyc.bom.commands.generateChangeNoticeCommand"/>
+								</iterate>
+							</not>
+						</with>
+					</and>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester
+			id="com.byd.cyc.bom.testers.OpenRootProcessTypeTester"
+			type="com.teamcenter.rac.kernel.TCComponent"
+			namespace="com.byd.cyc.bom"
+			properties="selectCNType"
+			class="com.byd.cyc.bom.testers.SelectCNTypeTester">
+		</propertyTester>
+	</extension>
+</plugin>

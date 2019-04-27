@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.8"?>
+<plugin>
+	
+	<extension point="org.eclipse.ui.commands">
+		<category name="Process Report Category" id="com.sokon.bopreport.customization.commands.category">
+		</category>
+		<command name="%Crucial.Process.List.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.crucialProcessListCommand">
+		</command>
+		<command name="%Auxiliary.Quota.List.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.auxiliaryQuotaListCommand">
+		</command>
+		<command name="%Staffing&amp;TimeManagementList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.staffingTimeManagementListCommand">
+		</command>
+		<command name="%Workflow.Process.Chart.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.workflowProcessChartCommand">
+		</command>		
+		<command name="%ToolList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.toolListCommand">
+		</command>
+		<command name="%FixtureList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.fixtureListCommand">
+		</command>
+		<command name="%CheckingFixtureList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.checkingFixtureListCommand">
+		</command>
+		
+		<command name="%VehicleTorqueList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.vehicleTorqueListCommand">
+		</command>
+		<command name="%StationBOM.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.stationBOMCommand">
+		</command>
+		<command name="%StampingIHPartsDieList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.mouldListCommand">
+		</command>
+		<command name="%DeviceList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.deviceListCommand">
+		</command>
+		<command name="%ElectrodeHolderList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.electrodeHolderListCommand">
+		</command>
+		<command name="%StampingIHPartsBlankList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.rawMaterialListCommand">
+		</command>
+		
+		<command name="%OutillageList.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.outillageListCommand">
+		</command>
+		<command name="%ProcessCardDownload.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.processCardDownloadCommand">
+		</command>
+		
+		<command name="%GeneralAssemblyProcessDoc.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.generalAssemblyProcessDocCommand">
+		</command>
+		<command name="%WeldingProcedureSpecification.Title" categoryId="com.sokon.bopreport.customization.commands.category"
+			id="com.sokon.bopreport.customization.commands.weldingProcedureSpecificationCommand">
+		</command>
+		
+		<!-- zhangyong -->
+		<command id="PaintingProcess" name="%PaintingProcess.TITLE"/>
+		<command id="Stamping" name="%Stamping.TITLE"/>
+	</extension>
+	
+	<extension point="org.eclipse.ui.handlers">
+		<handler commandId="com.sokon.bopreport.customization.commands.crucialProcessListCommand"
+			class="com.sokon.bopreport.customization.handlers.CrucialProcessListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.auxiliaryQuotaListCommand"
+			class="com.sokon.bopreport.customization.handlers.AuxiliaryQuotaListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.staffingTimeManagementListCommand"
+			class="com.sokon.bopreport.customization.handlers.StaffingTimeManagementListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.workflowProcessChartCommand"
+			class="com.sokon.bopreport.customization.handlers.WorkflowProcessChartHandler">
+		</handler>		
+		<handler commandId="com.sokon.bopreport.customization.commands.toolListCommand"
+			class="com.sokon.bopreport.customization.handlers.ToolListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.fixtureListCommand"
+			class="com.sokon.bopreport.customization.handlers.FixtureListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.checkingFixtureListCommand"
+			class="com.sokon.bopreport.customization.handlers.CheckingFixtureListHandler">
+		</handler>
+		
+		<handler commandId="com.sokon.bopreport.customization.commands.vehicleTorqueListCommand"
+			class="com.sokon.bopreport.customization.handlers.VehicleTorqueListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.stationBOMCommand"
+			class="com.sokon.bopreport.customization.handlers.StationBOMHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.mouldListCommand"
+			class="com.sokon.bopreport.customization.handlers.MouldListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.deviceListCommand"
+			class="com.sokon.bopreport.customization.handlers.DeviceListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.electrodeHolderListCommand"
+			class="com.sokon.bopreport.customization.handlers.ElectrodeHolderListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.rawMaterialListCommand"
+			class="com.sokon.bopreport.customization.handlers.RawMaterialListHandler">
+		</handler>
+		
+		<handler commandId="com.sokon.bopreport.customization.commands.outillageListCommand"
+			class="com.sokon.bopreport.customization.handlers.OutillageListHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.processCardDownloadCommand"
+			class="com.sokon.bopreport.customization.handlers.ProcessCardDownloadHandler">
+		</handler>
+		
+		<handler commandId="com.sokon.bopreport.customization.commands.generalAssemblyProcessDocCommand"
+			class="com.sokon.bopreport.customization.handlers.GeneralAssemblyProcessDocHandler">
+		</handler>
+		<handler commandId="com.sokon.bopreport.customization.commands.weldingProcedureSpecificationCommand"
+			class="com.sokon.bopreport.customization.handlers.WeldingProcedureSpecificationHandler">
+		</handler>
+		
+		<!--zhangyong -->
+		<handler class="com.sokon.report.PaintingProcess" commandId="PaintingProcess">
+		</handler>
+		<handler class="com.sokon.report.Stamping" commandId="Stamping">
+		</handler>
+	</extension>
+	
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=com.sokon.newcust.menus.MESMenu">
+			<menu label="%SOKON.PLM.Title" id="com.teamcenter.sokon.menus.SOKON_PLMMenu">
+				<menu label="%Process.Report.Title" id="com.sokon.bopreport.customization.menus.processReportMenu">
+					<!-- 菜单顺序按照开发规格中的功能点顺序排列，by zhoutong -->
+					<command commandId="PaintingProcess"  id="PaintingProcess"  style="push">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate  operator="or">
+											<equals
+	                                 			value="PaintingProcess">
+											</equals>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.generalAssemblyProcessDocCommand"
+						id="com.sokon.bopreport.customization.menus.generalAssemblyProcessDocCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.generalAssemblyProcessDocCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="Stamping"  id="Stamping"  style="push">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate  operator="or">
+											<equals
+	                                 			value="Stamping">
+											</equals>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.weldingProcedureSpecificationCommand"
+						id="com.sokon.bopreport.customization.menus.weldingProcedureSpecificationCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.weldingProcedureSpecificationCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					
+					<separator name="com.sokon.bopreport.customization.report.separator1" visible="true"/>
+					
+					<command commandId="com.sokon.bopreport.customization.commands.staffingTimeManagementListCommand"
+						id="com.sokon.bopreport.customization.menus.staffingTimeManagementListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.staffingTimeManagementListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.workflowProcessChartCommand"
+						id="com.sokon.bopreport.customization.menus.workflowProcessChartCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.workflowProcessChartCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+									
+					<separator name="com.sokon.bopreport.customization.report.separator2" visible="true"/>
+					
+					<command commandId="com.sokon.bopreport.customization.commands.toolListCommand"
+						id="com.sokon.bopreport.customization.menus.toolListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.toolListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.vehicleTorqueListCommand"
+						id="com.sokon.bopreport.customization.menus.vehicleTorqueListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.vehicleTorqueListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.crucialProcessListCommand"
+						id="com.sokon.bopreport.customization.menus.crucialProcessListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.crucialProcessListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.stationBOMCommand"
+						id="com.sokon.bopreport.customization.menus.stationBOMCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.stationBOMCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.auxiliaryQuotaListCommand"
+						id="com.sokon.bopreport.customization.menus.auxiliaryQuotaListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.auxiliaryQuotaListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.fixtureListCommand"
+						id="com.sokon.bopreport.customization.menus.fixtureListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.fixtureListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.checkingFixtureListCommand"
+						id="com.sokon.bopreport.customization.menus.checkingFixtureListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.checkingFixtureListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.deviceListCommand"
+						id="com.sokon.bopreport.customization.menus.deviceListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.deviceListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>					
+					<command commandId="com.sokon.bopreport.customization.commands.electrodeHolderListCommand"
+						id="com.sokon.bopreport.customization.menus.electrodeHolderListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.electrodeHolderListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					
+					<separator name="com.sokon.bopreport.customization.report.separator3" visible="true"/>
+					
+					<command commandId="com.sokon.bopreport.customization.commands.outillageListCommand"
+						id="com.sokon.bopreport.customization.menus.outillageListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.outillageListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					
+					<!-- 模具清单和原材料清单 功能菜单位于我的Teamcenter -->
+					<command commandId="com.sokon.bopreport.customization.commands.mouldListCommand"
+						id="com.sokon.bopreport.customization.menus.mouldListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.mouldListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					<command commandId="com.sokon.bopreport.customization.commands.rawMaterialListCommand"
+						id="com.sokon.bopreport.customization.menus.rawMaterialListCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.rawMaterialListCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+					
+					<separator name="com.sokon.bopreport.customization.report.separator4" visible="true"/>
+					
+					<command commandId="com.sokon.bopreport.customization.commands.processCardDownloadCommand"
+						id="com.sokon.bopreport.customization.menus.processCardDownloadCommand">
+						<visibleWhen>
+							<and>
+								<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+								<with variable="rac_command_suppression">
+									<not>
+										<iterate operator="or">
+											<equals value="com.sokon.bopreport.customization.commands.processCardDownloadCommand"/>
+										</iterate>
+									</not>
+								</with>
+							</and>
+						</visibleWhen>
+					</command>
+				</menu>
+			</menu>
+		</menuContribution>
+	</extension>
+	
+</plugin>

@@ -1,0 +1,40 @@
+#=================================================
+#
+# Define Process Report Template
+#
+#=================================================
+#
+# DatasetName						NamedReference
+
+SOKON_100_关键工序清单模板			Crucial Process List.xlsx
+
+SOKON_110_辅料定额清单模板			Auxiliary Quota List.xlsx
+
+SOKON_130_夹具清单模板				Fixture List.xlsx
+
+SOKON_140_检具清单模板				Checking Fixture List.xlsx
+
+SOKON_160_设备清单模板				Device List.xlsx
+
+SOKON_165_焊钳清单模板				Electrode Holder List.xlsx
+
+SOKON_180_工位物料清单				Station BOM					
+
+SOKON_190_工艺过程流程图模板			WorkFlow Process Chart.xlsx
+
+SOKON_200_人员定额&工时表模板			Staffing&Time Management List.xlsx
+
+SOKON_210_模具清单模板				Stamping IH Parts Die List.xlsx
+
+SOKON_220_原材料清单模板				Stamping IH Parts Blank List.xlsx
+
+SOKON_300_工具清单模板				Tool List.xlsx
+
+SOKON_310_焊装工艺卡模板				Welding Procedure Specification.xlsx
+
+SOKON_330_总装工艺卡模板				Assembly Process Doc.xlsx
+
+
+
+
+

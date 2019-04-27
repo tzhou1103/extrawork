@@ -31,7 +31,7 @@ public class Problem
 		if (revision_list != null && revision_list.length > 0) 
 		{
 			TCComponentItemRevision itemRev = problemItem.getLatestItemRevision();
-			String[] propNames = { "e9_ProblemDescription", "e9_SourcesWork",
+			/*String[] propNames = { "e9_ProblemDescription", "e9_SourcesWork",
 					"e9_ResponsibleDepartment", "e9_ResponsiblePerson",
 					"e9_ProposedDepartments", "e9_Introducer",
 					"e9_ProgressDescription" };
@@ -45,6 +45,26 @@ public class Problem
 				this.proposedDepartments = propValues[4];
 				this.introducer = propValues[5];
 				this.progressDescription = propValues[6];
+			}*/
+			
+			String[] propNames = { "e9_ProblemDescription", "e9_SourcesWork",
+					"e9_ResponsiblerDepartment", "e9_ProposerDepartment",
+					"e9_ProgressDescription" };
+			String[] propValues = itemRev.getProperties(propNames);
+			if ((propValues != null) && (propValues.length == 5)) {
+				this.problemDescription = propValues[0];
+				this.sourcesWork = propValues[1];
+				this.responsibleDepartment = propValues[2]
+						.substring(propValues[2].indexOf(")") + 1);
+				this.responsiblePerson = propValues[2].substring(0,
+						propValues[2].indexOf("("));
+
+				this.proposedDepartments = propValues[3]
+						.substring(propValues[3].indexOf(")") + 1);
+				this.introducer = propValues[3].substring(0,
+						propValues[3].indexOf("("));
+
+				this.progressDescription = propValues[4];
 			}
 			
 			Date planDate = itemRev.getDateProperty("e9_DataPlan");

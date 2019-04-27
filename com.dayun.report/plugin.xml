@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.8"?>
+<plugin>
+
+	<extension
+         point="org.eclipse.ui.commands">
+		<category
+            name="DAYUN Report Category"
+            id="com.dayun.report.commands.category">
+		</category>
+		<command
+            name="导出项目任务情况报表"
+            categoryId="com.dayun.report.commands.category"
+            id="com.dayun.report.commands.taskReportCommand">
+		</command>
+		<command
+            name="导出项目交付物情况报表"
+            categoryId="com.dayun.report.commands.category"
+            id="com.dayun.report.commands.deliveryReportCommand">
+		</command>
+
+		<command
+            name="导出问题情况报表"
+            categoryId="com.dayun.report.commands.category"
+            id="com.dayun.report.commands.problemReportCommand">
+		</command>
+		
+		<command
+            name="项目汇总"
+            categoryId="com.dayun.report.commands.category"
+            id="com.dayun.report.commands.projectSummaryCommand">
+		</command>
+
+		<command
+            name="编辑问题对象"
+            categoryId="com.dayun.report.commands.category"
+            id="com.dayun.report.commands.editProblemCommand">
+		</command>
+	</extension>
+
+	<extension
+         point="org.eclipse.ui.handlers">
+		<handler
+            commandId="com.dayun.report.commands.taskReportCommand"
+            class="com.dayun.report.handlers.TaskReportHandler">
+		</handler>
+		<handler
+            commandId="com.dayun.report.commands.deliveryReportCommand"
+            class="com.dayun.report.handlers.DeliveryReportHandler">
+		</handler>
+
+		<handler
+            commandId="com.dayun.report.commands.problemReportCommand"
+            class="com.dayun.report.handlers.ProblemReportHandler">
+		</handler>
+		
+		<handler
+            commandId="com.dayun.report.commands.projectSummaryCommand"
+            class="com.dayun.report.handlers.ProjectSummaryHandler">
+		</handler>
+
+		<handler
+            commandId="com.dayun.report.commands.editProblemCommand"
+            class="com.dayun.report.handlers.EditProblemHandler">
+		</handler>
+	</extension>
+
+	<extension
+         point="org.eclipse.ui.menus">
+		<menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+			<menu
+               label="项目管理"
+               id="com.dayun.report.menus.projectMgmtMenu">
+			</menu>
+		</menuContribution>
+
+		<menuContribution
+            locationURI="menu:com.dayun.report.menus.projectMgmtMenu?after=additions">
+			<menu
+               label="监控项目交付计划"
+               id="com.dayun.report.menus.monitorProjectMenu">
+				<command
+                  commandId="com.dayun.report.commands.taskReportCommand"
+                  id="com.dayun.report.menus.taskReportCommand">
+					<visibleWhen>
+						<and>
+							<reference definitionId="com.teamcenter.rac.schedule.inMainView"/>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.dayun.report.commands.taskReportCommand"/>
+									</iterate>
+								</not>
+							</with>
+						</and>
+					</visibleWhen>
+				</command>
+				<command
+                  commandId="com.dayun.report.commands.deliveryReportCommand"
+                  id="com.dayun.report.menus.deliveryReportCommand">
+					<visibleWhen>
+						<and>
+							<reference definitionId="com.teamcenter.rac.schedule.inMainView"/>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.dayun.report.commands.deliveryReportCommand"/>
+									</iterate>
+								</not>
+							</with>
+						</and>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+		
+		<menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+			<menu
+               label="报表"
+               id="com.dayun.report.menus.dayunReportMenu">
+				<command
+                  commandId="com.dayun.report.commands.problemReportCommand"
+                  id="com.dayun.report.menus.problemReportCommand">
+					<visibleWhen>
+						<and>
+							<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.dayun.report.commands.problemReportCommand"/>
+									</iterate>
+								</not>
+							</with>
+						</and>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+
+		<menuContribution 
+			locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+			<command commandId="com.dayun.report.commands.editProblemCommand" 
+				id="com.dayun.report.popup.editProblemCommand">
+				<visibleWhen>
+					<and>
+						<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+						<iterate ifEmpty="false" operator="and">
+							<adapt type="com.teamcenter.rac.kernel.TCComponentItemRevision">
+								<and>
+									<test
+                            			property="com.dayun.report.editProblemType"
+                            			forcePluginActivation="true">
+									</test>
+								</and>
+							</adapt>
+						</iterate>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.dayun.report.commands.editProblemCommand"/>
+								</iterate>
+							</not>
+						</with>
+					</and>
+				</visibleWhen>
+			</command>			
+		</menuContribution>
+	</extension>
+
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester
+			class="com.dayun.report.testers.EditProblemPropertyTester"
+			id="com.dayun.report.testers.EditProblemPropertyTester"
+			namespace="com.dayun.report"
+			properties="editProblemType"
+			type="com.teamcenter.rac.kernel.TCComponentItemRevision">
+		</propertyTester>
+	</extension>
+
+</plugin>

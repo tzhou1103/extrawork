@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.ui.commands">
+   	  <category name="DataImport Category"
+                id="com.hasco.ssdt.commands.category">
+      </category>
+      <command
+         name="导入数据分类"
+         id="com.hasco.ssdt.commands.ImportInClass">
+      </command>
+      <!--add 2014.8.4-->
+      <command
+          id="com.hasco.ssdt.oem.nximport.NXImportClass"
+          name="赛科利OEM NX装配导入">
+       </command>
+       
+       <command
+          id="com.hasco.ssdt.oem.nxexport.NXExportClass"
+          name="赛科利OEM NX装配导出">
+       </command>
+       
+       <command
+          id="com.hasco.ssdt.de.nximport.NXImportClass"
+          name="赛科利模具部NX装配导入">
+       </command>
+       
+        <command
+          id="com.hasco.ssdt.de.nxexport.NXExportClass"
+          name="赛科利模具部NX装配导出">
+       </command>
+       
+      <!-- added by zhoutong, 2018-12-05 -->
+	  <command 
+	        id="com.hasco.ssdt.pdm.nxexport.NXExportClass" 
+			name="赛科利采购数模下载">
+	  </command>
+       
+   </extension>
+   <extension point="org.eclipse.ui.handlers">
+      <handler
+      	 commandId="com.hasco.ssdt.commands.ImportInClass"
+         class="com.hasco.ssdt.handlers.ImportInClassHandler">
+      </handler>   
+       <handler
+      	 commandId="com.hasco.ssdt.oem.nximport.NXImportClass"
+         class="com.hasco.ssdt.oem.nximport.NXCloneImportHandler">
+      </handler>  
+      
+       <handler
+      	 commandId="com.hasco.ssdt.oem.nxexport.NXExportClass"
+         class="com.hasco.ssdt.oem.nxexport.NXCloneExportHandler">
+      </handler> 
+      
+       <handler
+      	 commandId="com.hasco.ssdt.de.nximport.NXImportClass"
+         class="com.hasco.ssdt.de.nximport.NXCloneImportHandler">
+      </handler> 
+      
+       <handler
+      	 commandId="com.hasco.ssdt.de.nxexport.NXExportClass"
+         class="com.hasco.ssdt.de.nxexport.NXCloneExportHandler">
+       </handler> 
+      
+      <handler
+            commandId="com.hasco.ssdt.pdm.nxexport.NXExportClass"
+            class="com.hasco.ssdt.pdm.nxexport.NXCloneExportHandler">
+      </handler>   
+   </extension>
+   <extension point="org.eclipse.ui.menus">
+       <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?before=help">
+         <menu  id="com.custom.menus.sampleMenu" label="数据导入">
+         
+            <command
+                  commandId="com.hasco.ssdt.commands.ImportInClass"
+                  mnemonic="R"
+                  id="com.hasco.ssdt.menus.ImportInClassAction">
+            <visibleWhen>
+				  <and>
+				  <or>
+				     <reference 
+                        definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+                   </or>     
+                   <or>
+						  <iterate ifEmpty="false">
+					              <adapt type="com.teamcenter.rac.kernel.TCComponent">
+					                   <and>
+		               						<test 
+	                         					forcePluginActivation="true"
+	                      						property="com.naveco.group.test.group" value="SSDT">
+	                      					</test>
+		               				  </and>
+					               </adapt>
+	                		</iterate>
+                	</or>
+                                   
+                    <with variable="rac_command_suppression">
+                            <not>
+                                <iterate operator="or">
+                                    <equals
+                                        value="com.hasco.ssdt.commands.ImportInClass"/>
+                                </iterate>
+                            </not>
+                    </with>
+                 </and>       
+				</visibleWhen>
+            </command>
+         </menu>
+      </menuContribution>
+      
+      <menuContribution locationURI="menu:org.eclipse.ui.main.menu?before=help">
+			<menu id="com.sdec.commands.CustomMenu1" label="功能">
+			 <!-- OEM数模 -->
+			    <command
+	               commandId="com.hasco.ssdt.oem.nximport.NXImportClass"
+					icon="icons/component.png"
+					tooltip="赛科利OEM NX装配导入">
+		          <visibleWhen>
+				  <and>
+				    <or>
+						<reference
+							definitionId="com.teamcenter.rac.ui.inMainPerspective">							
+						</reference>			
+                    </or>  
+                     <or>
+						    <iterate ifEmpty="false">
+					                    <adapt type="com.teamcenter.rac.kernel.TCComponent">
+					                       <and>
+		               							 <test 
+	                         						forcePluginActivation="true"
+	                      						property="com.naveco.group.test.group" value="SSDT">
+	                      					 </test>
+		               					  </and>
+					                  </adapt>
+	                		</iterate>
+                	</or>                                      
+                    <with variable="rac_command_suppression">
+                            <not>
+                                <iterate operator="or">
+                                    <equals
+                                        value="com.hasco.ssdt.oem.nximport.NXImportClass"/>
+                                </iterate>
+                            </not>
+                    </with>
+                 </and>       
+				</visibleWhen>
+				</command>
+				
+				<command
+	               commandId="com.hasco.ssdt.oem.nxexport.NXExportClass"
+					icon="icons/component.png"
+					tooltip="赛科利OEM NX装配导出">
+		          <visibleWhen>
+				  <and>
+				    <or>
+						<reference
+							definitionId="com.teamcenter.rac.pse.inMainView">							
+						</reference>			
+                    </or>  
+                     <or>
+						    <iterate ifEmpty="false">
+					                    <adapt type="com.teamcenter.rac.kernel.TCComponent">
+					                       <and>
+		               							 <test 
+	                         						forcePluginActivation="true"
+	                      						property="com.naveco.group.test.group" value="SSDT">
+	                      					 </test>
+		               					  </and>
+					                  </adapt>
+	                		</iterate>
+                	</or>                                      
+                    <with variable="rac_command_suppression">
+                            <not>
+                                <iterate operator="or">
+                                    <equals
+                                        value="com.hasco.ssdt.oem.nxexport.NXExportClass"/>
+                                </iterate>
+                            </not>
+                    </with>
+                 </and>       
+				</visibleWhen>
+				</command>
+				
+				 <!-- 模具部数模 -->
+				<command
+	               commandId="com.hasco.ssdt.de.nximport.NXImportClass"
+					icon="icons/component.png"
+					tooltip="赛科利模具部NX装配导入">
+		          <visibleWhen>
+				  <and>
+				    <or>
+						<reference
+							definitionId="com.teamcenter.rac.ui.inMainPerspective">							
+						</reference>			
+                    </or>  
+                     <or>
+						    <iterate ifEmpty="false">
+					                    <adapt type="com.teamcenter.rac.kernel.TCComponent">
+					                       <and>
+		               							 <test 
+	                         						forcePluginActivation="true"
+	                      						property="com.naveco.group.test.group" value="SSDT">
+	                      					 </test>
+		               					  </and>
+					                  </adapt>
+	                		</iterate>
+                	</or>                                      
+                    <with variable="rac_command_suppression">
+                            <not>
+                                <iterate operator="or">
+                                    <equals
+                                        value="com.hasco.ssdt.de.nximport.NXImportClass"/>
+                                </iterate>
+                            </not>
+                    </with>
+                 </and>       
+				</visibleWhen>
+				</command>
+				
+				<command
+	               commandId="com.hasco.ssdt.de.nxexport.NXExportClass"
+					icon="icons/component.png"
+					tooltip="赛科利模具部NX装配导出">
+		          <visibleWhen>
+				  <and>
+				    <or>
+						<reference
+							definitionId="com.teamcenter.rac.pse.inMainView">							
+						</reference>			
+                    </or>  
+                     <or>
+						    <iterate ifEmpty="false">
+					                    <adapt type="com.teamcenter.rac.kernel.TCComponent">
+					                       <and>
+		               							 <test 
+	                         						forcePluginActivation="true"
+	                      						property="com.naveco.group.test.group" value="SSDT">
+	                      					 </test>
+		               					  </and>
+					                  </adapt>
+	                		</iterate>
+                	</or>                                      
+                    <with variable="rac_command_suppression">
+                            <not>
+                                <iterate operator="or">
+                                    <equals
+                                        value="com.hasco.ssdt.de.nxexport.NXExportClass"/>
+                                </iterate>
+                            </not>
+                    </with>
+                 </and>       
+				</visibleWhen>
+				</command>
+				
+				<command
+                	commandId="com.hasco.ssdt.pdm.nxexport.NXExportClass"
+                  	tooltip="赛科利采购数模下载">
+                  	<visibleWhen>
+						<and>
+							<reference definitionId="com.teamcenter.rac.pse.inMainView"/>
+							<iterate ifEmpty="false" operator="and">
+			            		<adapt type="com.teamcenter.rac.kernel.TCComponent">
+	                        		<and>
+	                            		<test 
+	                         				forcePluginActivation="true"
+	                      					property="com.naveco.group.test.group" value="SSDT">
+	                      				</test>
+	                        		</and>
+	                    		</adapt>
+			       			</iterate>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.hasco.ssdt.pdm.nxexport.NXExportClass"/>
+									</iterate>
+								</not>
+							</with>
+						</and>
+					</visibleWhen>
+            	</command>
+
+			</menu>
+		</menuContribution>
+      
+   </extension>
+   <extension
+         point="com.teamcenter.rac.util.tc_properties">
+   </extension>
+   <extension
+         point="com.teamcenter.rac.aifrcp.ActionSetAIFApplicationAssociation">
+      <AIFApplicationAssociation></AIFApplicationAssociation>
+   </extension>
+</plugin>
+ 
+

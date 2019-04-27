@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.8"?>
+<plugin>
+
+	<extension
+         point="org.eclipse.ui.commands">
+		<category
+            name="ExportTool Category"
+            id="com.hasco.ssdt.report.commands.category">
+		</category>
+		<command
+            name="工艺文件导出"
+            categoryId="com.hasco.ssdt.report.commands.category"
+            id="outputReportCommand">
+		</command>
+	</extension>
+	<extension
+         point="org.eclipse.ui.handlers">
+		<handler
+            commandId="outputReportCommand"
+            class="com.hasco.ssdt.report.handlers.OutputReportHandler">
+		</handler>
+	</extension>
+	<extension
+         point="org.eclipse.ui.menus">
+		<menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+			<menu
+               label="功能"
+               id="com.hasco.ssdt.report.menus.functionMenu">
+				<command
+                  commandId="outputReportCommand"
+                  id="com.hasco.ssdt.report.menus.outputReportCommand">
+					<visibleWhen>
+						<and>
+							<reference definitionId="com.teamcenter.rac.cme.mpp.inMainView"/>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="outputReportCommand"/>
+									</iterate>
+								</not>
+							</with>
+						</and>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+	</extension>
+
+</plugin>

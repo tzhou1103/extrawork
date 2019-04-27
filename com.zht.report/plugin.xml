@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="ZHT Category"
+            id="com.zht.report.commands.category">
+      </category>
+      <command
+            name="%ProductCategory.Name"
+            categoryId="com.zht.report.commands.category"
+            id="com.zht.report.commands.productCategoryCommand">
+      </command>
+      <command
+            name="%VehicleDetailReport.Name"
+            categoryId="com.zht.report.commands.category"
+            id="com.zht.report.commands.vehicleDetailReportCommand">
+      </command>
+      
+      <command
+            name="%ERPToPLMUpdateProperty.Name"
+            categoryId="com.zht.report.commands.category"
+            id="com.zht.report.commands.erpToplmUpdatePropertyCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.zht.report.commands.productCategoryCommand"
+            class="com.zht.report.handlers.ProductCategoryHandler">
+      </handler>
+      <handler
+            commandId="com.zht.report.commands.vehicleDetailReportCommand"
+            class="com.zht.report.handlers.VehicleDetailReportHandler">
+      </handler>
+      
+      <handler
+            commandId="com.zht.report.commands.erpToplmUpdatePropertyCommand"
+            class="com.zht.report.handlers.ERPToPLMUpdatePropertyHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:ZHTMyTc?before=com.zht.customization.commands.generatebominfo">
+          <!--<menu
+               label="中恒天"
+               id="com.zht.report.menus.sampleMenu">
+               -->
+            <command
+                  commandId="com.zht.report.commands.productCategoryCommand"
+                  id="com.zht.report.menus.productCategoryCommand">
+                  <visibleWhen>
+	                <and>
+	                    <reference definitionId="com.teamcenter.rac.pse.inMainView"/>
+	                    <with variable="rac_command_suppression">
+	                        <not>
+	                            <iterate operator="or">
+	                                <equals value="com.zht.report.commands.productCategoryCommand"/>
+	                            </iterate>
+	                        </not>
+	                    </with>
+	                </and>
+	              </visibleWhen>
+            </command>
+            <command
+                  commandId="com.zht.report.commands.vehicleDetailReportCommand"
+                  id="com.zht.report.menus.vehicleDetailReportCommand">
+                  <visibleWhen>
+	                <and>
+	                    <reference definitionId="com.teamcenter.rac.pse.inMainView"/>
+	                    <with variable="rac_command_suppression">
+	                        <not>
+	                            <iterate operator="or">
+	                                <equals value="com.zht.report.commands.vehicleDetailReportCommand"/>
+	                            </iterate>
+	                        </not>
+	                    </with>
+	                </and>
+	              </visibleWhen>
+            </command>
+            <separator name="com.zht.report.pse.separator" visible="true"/>
+         <!--</menu>-->
+      </menuContribution>
+      
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+          <menu
+               label="%UpdateProperty.Name"
+               id="com.zht.report.menus.reportMenu">
+	            <command
+	                  commandId="com.zht.report.commands.erpToplmUpdatePropertyCommand"
+	                  id="com.zht.report.menus.erpToplmUpdatePropertyCommand">
+	                  <visibleWhen>
+		                <and>
+		                    <reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+		                    <with variable="rac_command_suppression">
+		                        <not>
+		                            <iterate operator="or">
+		                                <equals value="com.zht.report.commands.erpToplmUpdatePropertyCommand"/>
+		                            </iterate>
+		                        </not>
+		                    </with>
+		                </and>
+		              </visibleWhen>
+	        	</command>
+			</menu>
+		</menuContribution>
+	</extension>
+
+</plugin>

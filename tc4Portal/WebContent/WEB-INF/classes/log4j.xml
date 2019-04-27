@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="null" threshold="null" xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+<!-- ========== Start of Appenders Section =========== -->
+
+   <appender name="TheConsole" class="org.apache.log4j.ConsoleAppender">
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %x %-5p %c - %m%n"/>
+      </layout>
+   </appender>
+
+   <appender name="PLM2TCUAInfo" class="org.apache.log4j.RollingFileAppender">
+      <param name="File" value="${java.io.tmpdir}/logs/${serv.context}/PLM2TCUAInfo.log"/>
+      <param name="Append" value="true"/>
+      <param name="bufferSize" value="8192"/>
+      <param name="bufferedIO" value="false"/>
+      <param name="immediateFlush" value="true"/>
+      <param name="maxBackupIndex" value="1"/>
+      <param name="maximumFileSize" value="10485760"/>
+      <param name="threshold" value="INFO"/>
+      <layout class="org.apache.log4j.PatternLayout">         
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %x %-5p %c - %m%n"/>
+      </layout>
+   </appender>
+
+   <appender name="PLM2TCUAWarn" class="org.apache.log4j.RollingFileAppender">
+      <param name="File" value="${java.io.tmpdir}/logs/${serv.context}/PLM2TCUAwarn.log"/>
+      <param name="Append" value="true"/>
+      <param name="bufferSize" value="8192"/>
+      <param name="bufferedIO" value="false"/>
+      <param name="immediateFlush" value="true"/>
+      <param name="maxBackupIndex" value="1"/>
+      <param name="maximumFileSize" value="10485760"/>
+      <param name="threshold" value="WARN"/>
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %x %-5p %c - %m%n"/>
+      </layout>
+   </appender>
+   
+   <appender name="PLM2TCUAError" class="org.apache.log4j.DailyRollingFileAppender">
+      <param name="File" value="${java.io.tmpdir}/logs/${serv.context}/PLM2TCUAError.log"/>
+      <param name="DatePattern" value="-yyyy-MM-dd"/>
+      <param name="Append" value="true"/>
+      <param name="bufferSize" value="8192"/>
+      <param name="bufferedIO" value="false"/>
+      <param name="immediateFlush" value="true"/>
+      <param name="threshold" value="ERROR"/>
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %x %-5p %c - %m%n"/>
+      </layout>
+   </appender>
+   
+   
+<!-- ========== End of Appenders Section ============= -->
+
+<!-- ++++++++++ Start of Category Section ++++++++++++ -->
+
+   <root>
+      <priority value="info"/>
+      <appender-ref ref="TheConsole"/>
+      <appender-ref ref="PLM2TCUAError"/>
+      <appender-ref ref="PLM2TCUAWarn"/>
+      <appender-ref ref="PLM2TCUAInfo"/>
+   </root>
+
+<!-- ++++++++++ End of Category Section ++++++++++++++ -->
+
+</log4j:configuration>

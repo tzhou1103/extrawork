@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://tcserver.nio.com" xmlns:intf="http://tcserver.nio.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tcserver.nio.com">
+	<!--WSDL created by Apache Axis version: 1.4 Built on Apr 22, 2006 (06:55:48 
+		PDT) -->
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xml.apache.org/xml-soap">
+			<complexType name="mapItem">
+				<sequence>
+					<element name="key" nillable="true" type="xsd:anyType"/>
+					<element name="value" nillable="true" type="xsd:anyType"/>
+				</sequence>
+			</complexType>
+			<complexType name="Map">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="item" type="apachesoap:mapItem"/>
+				</sequence>
+			</complexType>
+		</schema>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tcserver.nio.com">
+			<import namespace="http://xml.apache.org/xml-soap"/>
+			<element name="getCreateInfo">
+				<complexType>
+					<sequence>
+						<element maxOccurs="1" minOccurs="1" name="object_type" type="xsd:string"/>
+						<!-- 添加所有者和所有组参数， added by zhoutong, 2018-12-17 -->
+						<element maxOccurs="1" minOccurs="1" name="owning_user" type="xsd:string"/>
+						<element maxOccurs="1" minOccurs="1" name="owning_group" type="xsd:string"/>
+						<!-- 添加CR号参数 ， added by zhoutong, 2018-12-19 -->
+						<element maxOccurs="1" minOccurs="1" name="crNum" type="xsd:string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getCreateInfoResponse">
+				<complexType>
+					<sequence>
+						<element name="getCreateInfoReturn" type="impl:T4PCreatePartResp"/>
+					</sequence>
+				</complexType>
+			</element>
+
+			<complexType name="T4PCreatePartResp">
+				<sequence>
+
+					<element name="item_id" type="string"/>
+					<element name="item_revision_id" type="string"/>
+					<element name="attrDescList" nillable="true" type="impl:T4PAttrDescList"/>
+				</sequence>
+			</complexType>
+
+			<complexType name="T4PAttrDescList">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:T4PAttrDesc"/>
+				</sequence>
+			</complexType>
+
+			<complexType name="T4PAttrDesc">
+				<sequence>
+					<element name="attr_name" type="string"/>
+					<element maxOccurs="1" minOccurs="0" name="attr_display_name" type="string"/>
+					<element name="isMandatory" type="boolean"/>
+				</sequence>
+			</complexType>
+			<element name="getPartAttrs">
+				<complexType>
+					<sequence>
+
+						<element maxOccurs="1" minOccurs="1" name="item_id" type="string"/>
+						<element maxOccurs="1" minOccurs="1" name="item_revision_id" type="string"/>
+						<element maxOccurs="unbounded" minOccurs="0" name="attr_names" type="string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getPartAttrsResponse">
+				<complexType>
+					<sequence>
+
+						<element name="getPartAttrsReturn" type="impl:T4PPartAttrsOutput">
+						</element>
+
+					</sequence>
+				</complexType>
+			</element>
+
+			<complexType name="T4PPartAttrsOutput">
+				<sequence>
+					<element name="item_id" type="string"/>
+					<element name="item_revision_id" type="string"/>
+					<element maxOccurs="unbounded" minOccurs="0" name="attr_properties" type="impl:T4PAttrProperty"/>
+				</sequence>
+			</complexType>
+
+			<complexType name="T4PAttrProperty">
+				<sequence>
+					<element name="attr_name" type="string"/>
+					<element maxOccurs="1" minOccurs="0" name="attr_display_name" type="string"/>
+					<element maxOccurs="unbounded" minOccurs="1" name="attr_values" type="string">
+					</element>
+				</sequence>
+			</complexType>
+
+			<element name="getPartAttrsAll">
+				<complexType>
+					<sequence>
+
+						<element maxOccurs="1" minOccurs="1" name="item_id" type="string"/>
+						<element maxOccurs="1" minOccurs="1" name="item_revision_id" type="string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getPartAttrsAllResponse">
+				<complexType>
+					<sequence>
+
+						<element name="getPartAttrsAllReturn" type="impl:T4PPartAttrsOutput"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="setPartAttrs">
+				<complexType>
+					<sequence>
+
+						<element maxOccurs="1" minOccurs="1" name="item_id" type="string">
+						</element>
+						<element maxOccurs="1" minOccurs="1" name="item_revision_id" type="string"/>
+
+						<element maxOccurs="unbounded" minOccurs="1" name="attrs" type="impl:T4PAttrProperty"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="setPartAttrsResponse">
+				<complexType>
+					<sequence>
+
+						<element name="setPartAttrsReturn" type="impl:T4PSetPartAttrsResp"/>
+					</sequence>
+				</complexType>
+			</element>
+
+			<complexType name="T4PSetPartAttrsResp">
+				<sequence>
+
+
+					<element name="respInfoStatus" type="boolean"/>
+					<element name="respInfoMsg" type="string"/>
+				</sequence>
+			</complexType>
+
+
+
+			<element name="getBuyers">
+				<complexType>
+					<sequence>
+
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getBuyersResponse">
+				<complexType>
+					<sequence>
+
+						<element name="getBuyersReturn" type="impl:T4PGetBuyersResp"/>
+					</sequence>
+				</complexType>
+			</element>
+
+			<complexType name="T4PBuyerInfo">
+				<sequence>
+					<element name="name" type="string"/>
+					<element name="email" type="string"/>
+					<element name="status" type="string"/>
+				</sequence>
+			</complexType>
+
+			<complexType name="T4PGetBuyersResp">
+				<sequence>
+					<element name="infoMsg" type="string"/>
+					<element maxOccurs="unbounded" minOccurs="0" name="buyers" type="impl:T4PBuyerInfo"/>
+				</sequence>
+			</complexType>
+
+
+			<element name="getSuppliers">
+				<complexType>
+					<sequence>
+
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getSuppliersResponse">
+				<complexType>
+					<sequence>
+
+						<element name="getSuppliersReturn" type="impl:T4PGetSuppliersResp"/>
+					</sequence>
+				</complexType>
+			</element>
+
+			<complexType name="T4PSupplierInfo">
+				<sequence>
+					<element name="id" type="string"/>
+					<element name="name" type="string"/>
+					<element name="type" type="string"/>
+					<element name="contact_person" type="string"/>
+					<element name="email" type="string"/>
+					<element name="tel" type="string"/>
+					<element name="status" type="string"/>
+					<element name="comment" type="string"/>
+				</sequence>
+			</complexType>
+
+			<complexType name="T4PGetSuppliersResp">
+				<sequence>
+					<element name="infoMsg" type="string"/>
+					<element maxOccurs="unbounded" minOccurs="0" name="suppliers" type="impl:T4PSupplierInfo"/>
+				</sequence>
+			</complexType>
+			<element name="getMaterials">
+				<complexType>
+					<sequence>
+
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getMaterialsResponse">
+				<complexType>
+					<sequence>
+
+						<element name="getMaterialsReturn" type="impl:T4PGetMaterialsResp"/>
+					</sequence>
+				</complexType>
+			</element>
+
+			<complexType name="T4PMaterialInfo">
+				<sequence>
+					<element name="id" type="string"/>
+					<element name="item" type="string"/>
+					<element name="name" type="string"/>
+					<element name="density" type="string"/>
+					<element maxOccurs="1" minOccurs="0" name="lv1" type="string"/>
+					<element maxOccurs="1" minOccurs="0" name="lv2" type="string"/>
+					<element maxOccurs="1" minOccurs="0" name="lv3" type="string"/>
+					<element maxOccurs="1" minOccurs="0" name="lv4" type="string"/>
+					<element maxOccurs="1" minOccurs="0" name="lv5" type="string"/>
+					<element maxOccurs="1" minOccurs="0" name="lv6" type="string"/>
+					<element maxOccurs="1" minOccurs="0" name="grplv1" type="string"/>
+					<element name="spec" type="string"/>
+				</sequence>
+			</complexType>
+
+			<complexType name="T4PGetMaterialsResp">
+				<sequence>
+					<element name="infoMsg" type="string"/>
+					<element maxOccurs="unbounded" minOccurs="0" name="materials" type="impl:T4PMaterialInfo"/>
+				</sequence>
+			</complexType>
+
+			<element name="setPartObsolete">
+				<complexType>
+					<sequence>
+
+						<element name="item_id" type="string"/>
+						<element name="item_revision_id" type="string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="setPartObsoleteResponse">
+				<complexType>
+					<sequence>
+
+						<element name="setPartObsoleteReturn" type="impl:T4PSetPartObsoleteResp"/>
+					</sequence>
+				</complexType>
+			</element>
+		
+		
+			<complexType name="T4PSetPartObsoleteResp">
+				<complexContent>
+					<extension base="impl:T4PSetPartAttrsResp"/>
+				</complexContent>
+			</complexType>
+			<element name="getPartPdf">
+				<complexType>
+					<sequence>
+
+						<element name="item_id" type="string"/>
+						<element name="item_revision_id" type="string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="getPartPdfResponse">
+				<complexType>
+					<sequence>
+
+						<element name="getPartPdfReturn" type="impl:T4PGetPartPdfResp"/>
+					</sequence>
+				</complexType>
+			</element>
+		
+			<complexType name="T4PGetPartPdfResp">
+				<complexContent>
+					<extension base="impl:T4PSetPartAttrsResp"/>
+				</complexContent>
+			</complexType>
+			<element name="loopbackFunction">
+				<complexType>
+					<sequence>
+
+						<element maxOccurs="1" minOccurs="1" name="functionName" type="string"/>
+						<element maxOccurs="unbounded" minOccurs="0" name="parts" type="string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="loopbackFunctionResponse">
+				<complexType>
+					<sequence>
+
+						<element name="out" type="string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="revisePart">
+				<complexType>
+					<sequence>
+
+						<element name="item_id" type="string"/>
+						<element name="old_rev_id" type="string"/>
+						<element name="new_rev_id" type="string"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="revisePartResponse">
+				<complexType>
+					<sequence>
+
+						<element name="revisePartReturn" type="impl:T4PRevisePartResp"/>
+					</sequence>
+				</complexType>
+			</element>
+		
+			<complexType name="T4PRevisePartResp">
+				<complexContent>
+					<extension base="impl:T4PSetPartAttrsResp"/>
+				</complexContent>
+			</complexType>
+			<element name="updateBOM">
+				<complexType>
+					<sequence maxOccurs="1" minOccurs="0">
+
+
+
+
+						<element maxOccurs="unbounded" minOccurs="0" name="updateBOMInput" type="impl:T4PUpdateBOMInfo"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="updateBOMResponse">
+				<complexType>
+					<sequence>
+
+						<element name="out" type="impl:T4PUpdateBOMResp"/>
+					</sequence>
+				</complexType>
+			</element>
+		
+		
+
+			<complexType name="T4PUpdateBOMResp">
+				<complexContent>
+					<extension base="impl:T4PSetPartAttrsResp"/>
+				</complexContent>
+			</complexType>
+		
+			<complexType name="T4PUpdateBOMInfo">
+				<sequence>
+					<element maxOccurs="1" minOccurs="1" name="parentPartNo" type="string"/>
+					<element maxOccurs="1" minOccurs="1" name="parentRevId" type="string"/>
+					<element maxOccurs="unbounded" minOccurs="0" name="childLines" type="impl:T4PBOMLine"/>
+				</sequence>
+			</complexType>
+		
+			<complexType name="T4PBOMLine">
+				<sequence>
+
+                    <element maxOccurs="unbounded" minOccurs="0" name="attrs" type="impl:T4PAttrProperty"/>
+
+                    <element maxOccurs="1" minOccurs="0" name="partNo" type="string"/>
+                </sequence>
+			</complexType>
+		</schema>
+
+	</wsdl:types>
+
+	<wsdl:message name="getCreateInfoResponse">
+
+		<wsdl:part element="impl:getCreateInfoResponse" name="parameters">
+
+		</wsdl:part>
+
+	</wsdl:message>
+
+	<wsdl:message name="getCreateInfoRequest">
+
+		<wsdl:part element="impl:getCreateInfo" name="parameters">
+
+		</wsdl:part>
+
+	</wsdl:message>
+
+	<wsdl:message name="getPartAttrsRequest">
+		<wsdl:part element="impl:getPartAttrs" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getPartAttrsResponse">
+		<wsdl:part element="impl:getPartAttrsResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getPartAttrsAllRequest">
+		<wsdl:part element="impl:getPartAttrsAll" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getPartAttrsAllResponse">
+		<wsdl:part element="impl:getPartAttrsAllResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="setPartAttrsRequest">
+		<wsdl:part element="impl:setPartAttrs" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="setPartAttrsResponse">
+		<wsdl:part element="impl:setPartAttrsResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getBuyersRequest">
+		<wsdl:part element="impl:getBuyers" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getBuyersResponse">
+		<wsdl:part element="impl:getBuyersResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getSuppliersRequest">
+		<wsdl:part element="impl:getSuppliers" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getSuppliersResponse">
+		<wsdl:part element="impl:getSuppliersResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getMaterialsRequest">
+		<wsdl:part element="impl:getMaterials" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getMaterialsResponse">
+		<wsdl:part element="impl:getMaterialsResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="setPartObsoleteRequest">
+		<wsdl:part element="impl:setPartObsolete" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="setPartObsoleteResponse">
+		<wsdl:part element="impl:setPartObsoleteResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getPartPdfRequest">
+		<wsdl:part element="impl:getPartPdf" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="getPartPdfResponse">
+		<wsdl:part element="impl:getPartPdfResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="loopbackFunctionRequest">
+		<wsdl:part element="impl:loopbackFunction" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="loopbackFunctionResponse">
+		<wsdl:part element="impl:loopbackFunctionResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="revisePartRequest">
+		<wsdl:part element="impl:revisePart" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="revisePartResponse">
+		<wsdl:part element="impl:revisePartResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="updateBOMRequest">
+		<wsdl:part element="impl:updateBOM" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="updateBOMResponse">
+		<wsdl:part element="impl:updateBOMResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="TC4Portal">
+
+		<wsdl:operation name="getCreateInfo">
+
+			<wsdl:input message="impl:getCreateInfoRequest" name="getCreateInfoRequest">
+
+			</wsdl:input>
+
+			<wsdl:output message="impl:getCreateInfoResponse" name="getCreateInfoResponse">
+
+			</wsdl:output>
+
+		</wsdl:operation>
+
+		<wsdl:operation name="getPartAttrs">
+			<wsdl:input message="impl:getPartAttrsRequest"/>
+			<wsdl:output message="impl:getPartAttrsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPartAttrsAll">
+			<wsdl:input message="impl:getPartAttrsAllRequest"/>
+			<wsdl:output message="impl:getPartAttrsAllResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="setPartAttrs">
+			<wsdl:input message="impl:setPartAttrsRequest"/>
+			<wsdl:output message="impl:setPartAttrsResponse"/>
+		</wsdl:operation>
+
+		<wsdl:operation name="getBuyers">
+			<wsdl:input message="impl:getBuyersRequest"/>
+			<wsdl:output message="impl:getBuyersResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getSuppliers">
+			<wsdl:input message="impl:getSuppliersRequest"/>
+			<wsdl:output message="impl:getSuppliersResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getMaterials">
+			<wsdl:input message="impl:getMaterialsRequest"/>
+			<wsdl:output message="impl:getMaterialsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="setPartObsolete">
+			<wsdl:input message="impl:setPartObsoleteRequest"/>
+			<wsdl:output message="impl:setPartObsoleteResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPartPdf">
+			<wsdl:input message="impl:getPartPdfRequest"/>
+			<wsdl:output message="impl:getPartPdfResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="loopbackFunction">
+			<wsdl:input message="impl:loopbackFunctionRequest"/>
+			<wsdl:output message="impl:loopbackFunctionResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="revisePart">
+			<wsdl:input message="impl:revisePartRequest"/>
+			<wsdl:output message="impl:revisePartResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateBOM">
+			<wsdl:input message="impl:updateBOMRequest"/>
+			<wsdl:output message="impl:updateBOMResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="TC4PortalSoapBinding" type="impl:TC4Portal">
+
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+		<wsdl:operation name="getCreateInfo">
+
+			<wsdlsoap:operation soapAction=""/>
+
+			<wsdl:input name="getCreateInfoRequest">
+
+				<wsdlsoap:body use="literal"/>
+
+			</wsdl:input>
+
+			<wsdl:output name="getCreateInfoResponse">
+
+				<wsdlsoap:body use="literal"/>
+
+			</wsdl:output>
+
+		</wsdl:operation>
+
+		<wsdl:operation name="getPartAttrs">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/getPartAttrs"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPartAttrsAll">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/getPartAttrsAll"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setPartAttrs">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/setPartAttrs"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getBuyers">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/getBuyers"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getSuppliers">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/getSuppliers"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getMaterials">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/getMaterials"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setPartObsolete">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/setPartObsolete"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPartPdf">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/getPartPdf"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="loopbackFunction">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/loopbackFunction"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="revisePart">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/revisePart"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateBOM">
+			<wsdlsoap:operation soapAction="http://tcserver.nio.com/updateBOM"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="TC4PortalService">
+
+		<wsdl:port binding="impl:TC4PortalSoapBinding" name="TC4Portal">
+
+			<wsdlsoap:address location="http://localhost:8080/tc4Portal/services/TC4Portal"/>
+
+		</wsdl:port>
+
+	</wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,169 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from TC4PortalService WSDL service -->
+
+  <service name="TC4Portal" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://tcserver.nio.com"/>
+      <parameter name="wsdlServiceElement" value="TC4PortalService"/>
+      <parameter name="schemaQualified" value="http://xml.apache.org/xml-soap,http://tcserver.nio.com"/>
+      <parameter name="wsdlServicePort" value="TC4Portal"/>
+      <parameter name="className" value="com.nio.tcserver.TC4PortalSoapBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="TC4Portal"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PUpdateBOMInfo"
+        type="java:com.nio.tcserver.T4PUpdateBOMInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PGetMaterialsResp"
+        type="java:com.nio.tcserver.T4PGetMaterialsResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PGetBuyersResp"
+        type="java:com.nio.tcserver.T4PGetBuyersResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PSupplierInfo"
+        type="java:com.nio.tcserver.T4PSupplierInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PGetSuppliersResp"
+        type="java:com.nio.tcserver.T4PGetSuppliersResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PRevisePartResp"
+        type="java:com.nio.tcserver.T4PRevisePartResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PUpdateBOMResp"
+        type="java:com.nio.tcserver.T4PUpdateBOMResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PBOMLine"
+        type="java:com.nio.tcserver.T4PBOMLine"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PBuyerInfo"
+        type="java:com.nio.tcserver.T4PBuyerInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PSetPartObsoleteResp"
+        type="java:com.nio.tcserver.T4PSetPartObsoleteResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PAttrDescList"
+        type="java:com.nio.tcserver.T4PAttrDesc[]"
+        innerType="cmp-ns:T4PAttrDesc" xmlns:cmp-ns="http://tcserver.nio.com"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PAttrDesc"
+        type="java:com.nio.tcserver.T4PAttrDesc"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PSetPartAttrsResp"
+        type="java:com.nio.tcserver.T4PSetPartAttrsResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PAttrProperty"
+        type="java:com.nio.tcserver.T4PAttrProperty"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PGetPartPdfResp"
+        type="java:com.nio.tcserver.T4PGetPartPdfResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PCreatePartResp"
+        type="java:com.nio.tcserver.T4PCreatePartResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PMaterialInfo"
+        type="java:com.nio.tcserver.T4PMaterialInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PPartAttrsOutput"
+        type="java:com.nio.tcserver.T4PPartAttrsOutput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

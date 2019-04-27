@@ -1,0 +1,60 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from TC4PortalService WSDL service -->
+
+  <service name="TC4Portal" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://tcserver.nio.com"/>
+      <parameter name="wsdlServiceElement" value="TC4PortalService"/>
+      <parameter name="schemaQualified" value="http://tcserver.nio.com"/>
+      <parameter name="wsdlServicePort" value="TC4Portal"/>
+      <parameter name="className" value="com.nio.tcserver.TC4PortalSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="TC4Portal"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getCreateInfo" qname="operNS:getCreateInfo" xmlns:operNS="http://tcserver.nio.com" returnQName="retNS:getCreateInfoReturn" xmlns:retNS="http://tcserver.nio.com" returnType="rtns:T4PCreatePartResp" xmlns:rtns="http://tcserver.nio.com" soapAction="" >
+        <parameter qname="pns:part_type" xmlns:pns="http://tcserver.nio.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getCreateInfo"/>
+
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:>getCreateInfo"
+        type="java:com.nio.tcserver.GetCreateInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:>getCreateInfoResponse"
+        type="java:com.nio.tcserver.GetCreateInfoResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://tcserver.nio.com"
+        qname="ns:T4PCreatePartResp"
+        type="java:com.nio.tcserver.T4PCreatePartResp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
